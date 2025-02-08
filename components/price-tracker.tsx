@@ -19,7 +19,6 @@ const PriceTracker = () => {
           const bytes = accountInfo.data.slice(73, 81);
           const quantizedValueBigInt = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength).getBigInt64(0, true);
           const newPrice = Number(quantizedValueBigInt) / 100_000_000;
-          console.log("New price:", newPrice)
           setPrice(newPrice)
           setPriceHistory((prev) => [...prev.slice(-100), { time: Date.now(), price: newPrice }])
       },
